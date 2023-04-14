@@ -1,0 +1,185 @@
+* {
+  margin: 0;
+  padding: 0;
+  /*box-sizing: border-box;*/
+
+  /*add*/
+  border: 0;
+  overflow-x: hidden;
+}
+
+body {
+  background-image: url("../assets/background-hero.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  /* width: 720px;
+    background-color: rgba(255,255,255,.8);
+    padding: 20px 150px 50px;
+    border-radius: 20px;
+    position: relative; */
+  /*add*/
+  margin-top: 20px;
+  box-sizing: border-box;
+  overflow: visible !important;
+}
+
+/*wrap heading dan form*/
+.wrapper {
+  margin-top: 480px;
+  width: 520px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px 150px 50px;
+  border-radius: 20px;
+  position: relative;
+}
+
+/*heading*/
+.title {
+  margin: 0 auto;
+  text-align: center;
+  margin: 12px 0;
+}
+
+/* form h1 {
+    text-align: center;
+}
+
+form h3 {
+    margin-top: 30px;
+} */
+
+/*form input*/
+.user-box {
+  position: relative;
+  color: #212121;
+  width: 93%;
+  margin: 0 auto;
+  overflow: visible !important;
+  margin-bottom: -20px;
+}
+.user-box input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 20px;
+  margin-bottom: 30px;
+  border: none;
+  border: 4px solid #212121;
+  border-radius: 30px;
+  outline: none;
+  background: transparent;
+  box-sizing: border-box;
+  color: #212121;
+}
+.user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 15px 35px;
+  font-size: 22px;
+  pointer-events: none;
+  transition: 0.5s;
+  color: #212121;
+}
+.user-box input:focus ~ label,
+.user-box input:valid ~ label {
+  top: -40px;
+  left: 0;
+  font-size: 20px;
+  color: #212121 !important;
+}
+
+.user-box span {
+  padding: 0;
+}
+
+.user-box select {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 20px;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 5px solid #212121;
+  outline: none;
+  background: transparent;
+  color: #212121 !important;
+}
+
+/* form input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid black;
+    outline: none;
+    background-color: transparent;
+} */
+
+/*submit button*/
+.submit {
+  box-sizing: border-box;
+  background-color: #5e17eb;
+  color: white;
+  padding: 12px 0;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 2px solid white;
+  position: relative;
+  display: block;
+  width: 93%;
+  margin: 0 auto;
+}
+.submit:hover {
+  background-color: #212121;
+  color: white;
+  border: 2px solid #5e17eb;
+}
+
+/* .submit {
+    width: 30%;
+    color:white;
+    margin: auto;
+    margin-top: 15px;
+    font-weight: bold;
+    background-color: #5e17eb;
+    border: none;
+} */
+/*di html => <a href="#" class="close-form"></a> */
+.close-form {
+  position: absolute;
+  background-image: url("./close-button.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  top: 15px;
+  right: 15px;
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+/* .close-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid black;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    line-height: 25px;
+} */
