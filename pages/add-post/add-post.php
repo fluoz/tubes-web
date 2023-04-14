@@ -5,10 +5,8 @@ include "../../config/koneksi.php";
 if (isset($_COOKIE['login'])) {
   $_SESSION["login"] = $_COOKIE['login'];
   $_SESSION["username"] = $_COOKIE['username'];
-}
-
-if (isset($_SESSION['login'])) {
-  header("Location: welcome.php");
+} else {
+  header("Location: ../sign-in/signIn.php");
 }
 
 if (isset($_POST['add-post'])) {
@@ -20,11 +18,13 @@ if (isset($_POST['add-post'])) {
 
   $fileName = uniqid() . '-' . $_FILES['image']['name'];
   $fileTmp = $_FILES['image']['tmp_name'];
-  move_uploaded_file($fileTmp, '../../uploads/' .  $fileName);
+  move_uploaded_file($fileTmp, '../../assets/uploads/' .  $fileName);
 
-  $sql = "INSERT INTO posts (username, image_url, caption, created_at
+  $sql = "INSERT INTO posts (username, image_url, caption, created_at)
             VALUES ('$username', '$fileName', '$description', '$timestamp')";
   $result = mysqli_query($conn, $sql);
+
+  header("Location: ../../index.html");
 
   mysqli_close($conn);
 }
@@ -49,7 +49,7 @@ if (isset($_POST['add-post'])) {
     ></my-navbar>
     
     <div class="flex justify-center items-center h-[85vh]">
-      <form method="POST" action="">
+      <form method="POST" action="" enctype="multipart/form-data">
         <div class="flex items-center justify-between space-x-6">
           <div>
             <label class="block border-4 border-black">

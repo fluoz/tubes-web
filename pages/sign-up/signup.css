@@ -23,47 +23,7 @@ body {
   text-align: center;
   padding-bottom: 20px;
 }
-.popup {
-  width: 400px;
-  background-color: #ffffff;
-  border-radius: 5px;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.1);
-  text-align: center;
-  padding: 0 30px 30px;
-  color: #111111;
-  visibility: hidden;
-  transition: transform 0.5s, top 0.5s;
-}
 
-.open-popup {
-  visibility: visible;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.popup h2 {
-  color: #111111;
-  font-size: 40px;
-  font-weight: 500;
-  margin: 30px 0 10px;
-}
-
-.popup button {
-  width: 100%;
-  margin-top: 50px;
-  padding: 10px 0;
-  background-color: #6eff61;
-  color: #ffffff;
-  border: 0;
-  outline: none;
-  font-size: 20px;
-  border-radius: 5px;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-}
 form {
   margin: 40px 0;
   box-sizing: border-box;
@@ -124,10 +84,6 @@ form {
   font-size: 20px;
   color: #212121 !important;
 }
-
-/* .user-box span {
-    padding: 0;
-} */
 
 .submit-btn {
   box-sizing: border-box;

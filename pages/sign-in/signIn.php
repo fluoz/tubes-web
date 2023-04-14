@@ -7,8 +7,8 @@ if (isset($_COOKIE['login'])) {
     $_SESSION["username"] = $_COOKIE['username'];
 }
 
-if (isset($_SESSION['login'])) {
-    header("Location: welcome.php");
+if (isset($_COOKIE['login'])) {
+    header("Location: ../../index.html");
 }
 
 if (isset($_POST["submit"])) {
@@ -40,13 +40,11 @@ if (isset($_POST["submit"])) {
 
     $_SESSION['login'] = True;
     $_SESSION['username'] = $username;
-    setcookie('login', "true", time() + 3600);
-    setcookie('username', $username, time() + 3600);
+    setcookie('login', "true", time() + 3600, "/tubes-web");
+    setcookie('username', $username, time() + 3600, "/tubes-web");
     header("Location: ../../index.html");
     }
-
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +56,7 @@ if (isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In</title>
     <link rel="stylesheet" type="text/css" href="signIn.css" />
+    <link rel="stylesheet" href="../../global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />

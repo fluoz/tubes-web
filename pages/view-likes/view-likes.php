@@ -1,5 +1,12 @@
 <?php
-$username = $_GET["username"];
+include "../../config/koneksi.php";
+
+$post_id = $_GET["id"];
+$query = "SELECT * FROM likes WHERE post_id = '$post_id'";
+$result = mysqli_query($conn, $query);
+$data = mysqli_fetch_array($result);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -29,39 +36,16 @@ $username = $_GET["username"];
               />
             </g>
           </svg>
-          <p class="font-bold text-[1.5em] px-6 py-2">Likes (8)</p>
-          <div class="flex items-center px-6 py-2">
-            <img width="35px" src="../../assets/user-black.png" alt="" />
-            <h2 class="text-base ml-4">Username</h2>
-          </div>
-          <div class="flex items-center px-6 py-2">
-            <img width="35px" src="../../assets/user-black.png" alt="" />
-            <h2 class="text-base ml-4">Username</h2>
-          </div>
-          <div class="flex items-center px-6 py-2">
-            <img width="35px" src="../../assets/user-black.png" alt="" />
-            <h2 class="text-base ml-4">Username</h2>
-          </div>
-          <div class="flex items-center px-6 py-2">
-            <img width="35px" src="../../assets/user-black.png" alt="" />
-            <h2 class="text-base ml-4">Username</h2>
-          </div>
-          <div class="flex items-center px-6 py-2">
-            <img width="35px" src="../../assets/user-black.png" alt="" />
-            <h2 class="text-base ml-4">Username</h2>
-          </div>
-          <div class="flex items-center px-6 py-2">
-            <img width="35px" src="../../assets/user-black.png" alt="" />
-            <h2 class="text-base ml-4">Username</h2>
-          </div>
-          <div class="flex items-center px-6 py-2">
-            <img width="35px" src="../../assets/user-black.png" alt="" />
-            <h2 class="text-base ml-4">Username</h2>
-          </div>
-          <div class="flex items-center px-6 py-2">
-            <img width="35px" src="../../assets/user-black.png" alt="" />
-            <h2 class="text-base ml-4">Username</h2>
-          </div>
+          <p class="font-bold text-[1.5em] px-6 py-2">Likes (<?= count($data); ?>)</p>
+          <?php
+          foreach($data as $row) {
+
+            echo "<div class='flex items-center px-6 py-2'>
+                    <img width='35px' src='../../assets/user-black.png' alt='' />
+                    <h2 class='text-base ml-4'>{$row['username']}</h2>
+                  </div>";
+          }
+          ?>
         </div>
       </div>
     </div>

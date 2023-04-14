@@ -17,12 +17,12 @@ class UserPost extends HTMLElement {
     // document.querySelector(
     //   "#portal"
     // ).innerHTML += `<view-comment><view-comment>`;
-    location.href = "pages/view-comments/view-comments.html";
+    location.href = "pages/view-comments/view-comments.php";
   }
 
   openPopupLike() {
     // document.querySelector("#portal").innerHTML += `<view-likes><view-likes>`;
-    location.href = "pages/view-likes/view-likes.html";
+    location.href = "pages/view-likes/view-likes.php";
   }
 
   render() {

@@ -5,10 +5,7 @@ include "../../config/koneksi.php";
 if (isset($_COOKIE['login'])) {
   $_SESSION["login"] = $_COOKIE['login'];
   $_SESSION["username"] = $_COOKIE['username'];
-}
-
-if (isset($_SESSION['login'])) {
-  header("Location: welcome.php");
+  header("Location: ../../index.html");
 }
 
 if (isset($_POST["submit"])) {
@@ -33,9 +30,11 @@ if (isset($_POST["submit"])) {
   } else {
     
     if (isset($_FILES["filepic"])) {
-      $fileName = $name . "-" . $email;
+      $fileExt = explode('.', $_FILES['filepic']['name']);
+      $fileExt = strtolower(end($fileExt));
+      $fileName = $username . "." . $fileExt;
       $fileTmp = $_FILES['filepic']['tmp_name'];
-      move_uploaded_file($fileTmp, '../../uploads/' .  $fileName);
+      move_uploaded_file($fileTmp, '../../assets/uploads/' .  $fileName);
     } 
   
     $md5Pass = md5($password);
@@ -47,8 +46,8 @@ if (isset($_POST["submit"])) {
       $result = mysqli_query($conn, $query);
       $_SESSION['login'] = True;
       $_SESSION['username'] = $username;
-      setcookie('login', "true", time()+3600);
-      setcookie('username', $username, time()+3600);
+      setcookie('login', "true", time()+3600, "/tubes-web");
+      setcookie('username', $username, time()+3600, "/tubes-web");
       header("Location: ../../index.html");
       
     } catch (Exception $e) {
@@ -75,17 +74,12 @@ if (isset($_POST["submit"])) {
     <title>Sign-Up</title>
     <link rel="stylesheet" type="text/css" href="./signup.css" />
     <link rel="stylesheet" type="text/css" href="./formInput.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="../../global.css">
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
       <a href="../sign-in/signIn.php">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +104,7 @@ if (isset($_POST["submit"])) {
         <br />
       </div>
       <div class="user-box">
-        <input type="text" name="username" id="username" required />
+        <input type="text" name="username" id="username" maxlength="30" required />
         <label for="username" style="color: #212121">Username *</label>
         <br />
         <br />
