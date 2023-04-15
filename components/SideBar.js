@@ -2,6 +2,7 @@ class SideBar extends HTMLElement {
   constructor() {
     super();
     this.profileLogo = this.getAttribute("profileLogo");
+    this.path = this.getAttribute("path");
   }
 
   connectedCallback() {
@@ -9,10 +10,11 @@ class SideBar extends HTMLElement {
     this.querySelector(".close-profile").addEventListener("click", () =>
       this.closeProfileHandler()
     );
-    this.querySelector(".btn-logout").addEventListener(
-      "click",
-      () => (location.href = "pages/sign-in/signIn.php")
-    );
+    this.querySelector(".btn-logout").addEventListener("click", () => {
+      document.cookie =
+        "login=;path=/tubes-web;expires=Thu, 01 Jan 1970 00:00:01 GMT";
+      location.href = this.path + "/sign-in/signIn.php";
+    });
   }
 
   closeProfileHandler = () => {
@@ -22,6 +24,12 @@ class SideBar extends HTMLElement {
       this.remove();
     });
   };
+
+  getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
 
   render() {
     this.innerHTML = `
@@ -50,17 +58,17 @@ class SideBar extends HTMLElement {
         <li
           class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
         >
-          <a class="w-full block py-3 h-full" href="./pages/update-account/update-account.php">Update Account</a>
+          <a class="w-full block py-3 h-full" href="${this.path}update-account/update-account.php">Update Account</a>
         </li>
         <li
           class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
         >
-          <a class="w-full block py-3 h-full" href="pages/change-password/change-password.php">Change Password</a>
+          <a class="w-full block py-3 h-full" href="${this.path}change-password/change-password.php">Change Password</a>
         </li>
         <li
           class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
         >
-          <a class="w-full block py-3 h-full" href="pages/add-post/add-post.php">Upload Content</a>
+          <a class="w-full block py-3 h-full" href="${this.path}add-post/add-post.php">Upload Content</a>
         </li>
       </ul>
 

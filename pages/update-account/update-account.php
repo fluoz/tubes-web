@@ -32,7 +32,7 @@ if(isset($_POST["submit"])){
     rename($dir . $data["profile_picture"], $dir . $fileName);
   }
   // ternyata harus ada empty $_FILES["filepic"]["name"] kalau isset($_FILES["filepic"]) -> ini bakal true terus
-  if (!empty($_FILES["filepic"]["name"])) { 
+  if (!empty($_FILES["filepic"]["name"])) {   
     $fileExt = explode('.', $_FILES['filepic']['name']);  
     $fileExt = strtolower(end($fileExt));
     $fileName = $username . "." . $fileExt;

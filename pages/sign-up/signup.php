@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
     </div>';
   } else {
     
-    if (isset($_FILES["filepic"])) {
+    if (!empty($_FILES["filepic"]['name'])) {
       $fileExt = explode('.', $_FILES['filepic']['name']);
       $fileExt = strtolower(end($fileExt));
       $fileName = $username . "." . $fileExt;

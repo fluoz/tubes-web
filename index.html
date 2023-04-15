@@ -14,24 +14,20 @@
     <link rel="stylesheet" href="global.css" />
     <title>InstaFace - Home</title>
   </head>
-  <body>
+  <body onload="getPosts()">
     <!-- <div id="portal"></div> -->
     <my-navbar
       logo="./assets/insta-logo.png"
       userImg="./assets/user.png"
       profileLogo="assets/user-black.png"
+      specific-path="pages/"
     ></my-navbar>
-    <main class="mx-auto sm:px-20 px-4">
-      <user-post
-        img="./assets/user-black.png"
-        name="Username"
-        description="Description..."
-      ></user-post>
-    </main>
+    <main id="main" class="mx-auto sm:px-20 px-4"></main>
 
     <script src="components/UserPost.js"></script>
     <script src="components/SideBar.js"></script>
     <script src="components/Navbar.js"></script>
+    <!-- <script src="components/Skeleton.js"></script> -->
     <script src="main.js"></script>
   </body>
 </html>
