@@ -45,26 +45,23 @@ class UserPost extends HTMLElement {
       post_id: this.id,
     };
 
+    let xmlhttp = new XMLHttpRequest();
     if (this.liked) {
       this.querySelector(".svg-like").style.fill = "red";
-
-      const res = await fetch(
-        "http://localhost/tubes-web/tubes-web/api/likes.php",
-        {
-          method: "POST",
-          body: JSON.stringify(post),
-        }
+      xmlhttp.open(
+        "POST",
+        "http://localhost/tubes-web/tubes-web/api/likes.php"
       );
+      xmlhttp.setRequestHeader("Content-Type", "application/json");
+      xmlhttp.send(JSON.stringify(post));
     } else {
       this.querySelector(".svg-like").style.fill = "none";
-
-      const res = await fetch(
-        "http://localhost/tubes-web/tubes-web/api/likes.php",
-        {
-          method: "DELETE",
-          body: JSON.stringify(post),
-        }
+      xmlhttp.open(
+        "DELETE",
+        "http://localhost/tubes-web/tubes-web/api/likes.php"
       );
+      xmlhttp.setRequestHeader("Content-Type", "application/json");
+      xmlhttp.send(JSON.stringify(post));
     }
   }
 
