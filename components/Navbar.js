@@ -19,7 +19,7 @@ class Navbar extends HTMLElement {
     profileLogo=${
       this.getCookie("profile_picture")
         ? this.path + "assets/uploads/" + this.getCookie("profile_picture")
-        : this.path + "assets/user.png"
+        : this.path + "assets/user-black.png"
     }></side-bar>`;
   };
 
