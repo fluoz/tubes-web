@@ -44,9 +44,7 @@ if (isset($_POST['add-post'])) {
   <body>
     <my-navbar
       logo="../../assets/insta-logo.png"
-      userImg="../../assets/user.png"
-      profileLogo="../../assets/user-black.png"
-      specific-path="../"
+      specific-path="../../"
     ></my-navbar>
     
     <div class="flex justify-center items-center h-[85vh]">

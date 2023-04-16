@@ -46,8 +46,10 @@ if (isset($_POST["submit"])) {
       $result = mysqli_query($conn, $query);
       $_SESSION['login'] = True;
       $_SESSION['username'] = $username;
+      $_SESSION['profile_picture'] = $fileName;
       setcookie('login', "true", time()+3600, "/tubes-web");
       setcookie('username', $username, time()+3600, "/tubes-web");
+      setcookie('profile_picture', $fileName, time()+3600, "/tubes-web");
       header("Location: ../../index.html");
       
     } catch (Exception $e) {

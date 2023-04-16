@@ -40,8 +40,10 @@ if (isset($_POST["submit"])) {
 
     $_SESSION['login'] = True;
     $_SESSION['username'] = $username;
+    $_SESSION['profile_picture'] = $data['profile_picture'];
     setcookie('login', "true", time() + 3600, "/tubes-web");
     setcookie('username', $username, time() + 3600, "/tubes-web");
+    setcookie('profile_picture', $data['profile_picture'], time() + 3600, "/tubes-web");
     header("Location: ../../index.html");
     }
 }

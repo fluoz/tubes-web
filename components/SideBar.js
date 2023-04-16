@@ -13,6 +13,10 @@ class SideBar extends HTMLElement {
     this.querySelector(".btn-logout").addEventListener("click", () => {
       document.cookie =
         "login=;path=/tubes-web;expires=Thu, 01 Jan 1970 00:00:01 GMT";
+      document.cookie =
+        "username=;path=/tubes-web;expires=Thu, 01 Jan 1970 00:00:01 GMT";
+      document.cookie =
+        "profile_picture=;path=/tubes-web;expires=Thu, 01 Jan 1970 00:00:01 GMT";
       location.href = this.path + "sign-in/signIn.php";
     });
   }
@@ -53,22 +57,30 @@ class SideBar extends HTMLElement {
         </svg>
       </div>
       <img class="mx-auto mt-20 w-32" src="${this.profileLogo}" alt="" />
-      <h1 class="text-center font-bold text-4xl my-8">Username</h1>
+      <h1 class="text-center font-bold text-4xl my-8">${this.getAttribute(
+        "username"
+      )}</h1>
       <ul class="mx-auto w-full">
         <li
           class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
         >
-          <a class="w-full block py-3 h-full" href="${this.path}update-account/update-account.php">Update Account</a>
+          <a class="w-full block py-3 h-full" href="${
+            this.path
+          }update-account/update-account.php">Update Account</a>
         </li>
         <li
           class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
         >
-          <a class="w-full block py-3 h-full" href="${this.path}change-password/change-password.php">Change Password</a>
+          <a class="w-full block py-3 h-full" href="${
+            this.path
+          }change-password/change-password.php">Change Password</a>
         </li>
         <li
           class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
         >
-          <a class="w-full block py-3 h-full" href="${this.path}add-post/add-post.php">Upload Content</a>
+          <a class="w-full block py-3 h-full" href="${
+            this.path
+          }add-post/add-post.php">Upload Content</a>
         </li>
       </ul>
 

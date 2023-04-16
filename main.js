@@ -1,5 +1,4 @@
 const main = document.getElementById("main");
-// let postData = [];
 
 const getPosts = async () => {
   const res = await fetch("http://localhost/tubes-web/tubes-web/api/post.php");
@@ -21,14 +20,15 @@ const getPosts = async () => {
             user-logo="${path}" 
             img="./assets/uploads/${x.image_url}" 
             description="${x.caption}" 
-            name="${x.username}">
-        </user-post`;
+            name="${x.username}"
+            ${x.liked ? "liked" : ""}
+        </user-post>`;
   }
 };
 
 const onLoadWeb = async () => {
   await getPosts();
-  await new Promise((r) => setTimeout(r, 1000));
+  await new Promise((r) => setTimeout(r, 500));
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const newUser = urlParams.get("to");
@@ -36,4 +36,14 @@ const onLoadWeb = async () => {
   if (newUser) {
     location.href = "#" + newUser;
   }
+};
+
+const btnClicked = () => {
+  document.querySelector(".popup").remove();
+};
+
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
 };

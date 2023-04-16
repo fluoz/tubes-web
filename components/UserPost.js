@@ -2,6 +2,8 @@ class UserPost extends HTMLElement {
   constructor() {
     super();
     this.id = this.getAttribute("id");
+    this.liked = this.hasAttribute("liked");
+    this.isLogin = this.getCookie("login");
   }
   connectedCallback() {
     this.render();
@@ -10,7 +12,7 @@ class UserPost extends HTMLElement {
     });
 
     this.querySelector(".like-click").addEventListener("click", () => {
-      this.openPopupLike();
+      this.onLikeHandler();
     });
   }
 
@@ -18,8 +20,52 @@ class UserPost extends HTMLElement {
     location.href = `pages/view-comments/view-comments.php?id=${this.id}`;
   }
 
-  openPopupLike() {
-    location.href = `pages/view-likes/view-likes.php?id=${this.id}`;
+  getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
+  async onLikeHandler() {
+    if (!this.isLogin) {
+      document.querySelector("#portal").innerHTML = `
+        <div style="z-index: 999;" class="popup open-popup" id="popup">
+        <h2>Error!</h2>
+        <p>Tolong Login dlu!</p>
+        <button onclick="btnClicked()" type="button">Ok</button>
+      </div>
+      `;
+      return;
+    }
+
+    this.liked = !this.liked;
+
+    const post = {
+      username: this.getCookie("username"),
+      post_id: this.id,
+    };
+
+    if (this.liked) {
+      this.querySelector(".svg-like").style.fill = "red";
+
+      const res = await fetch(
+        "http://localhost/tubes-web/tubes-web/api/likes.php",
+        {
+          method: "POST",
+          body: JSON.stringify(post),
+        }
+      );
+    } else {
+      this.querySelector(".svg-like").style.fill = "none";
+
+      const res = await fetch(
+        "http://localhost/tubes-web/tubes-web/api/likes.php",
+        {
+          method: "DELETE",
+          body: JSON.stringify(post),
+        }
+      );
+    }
   }
 
   render() {
@@ -38,8 +84,11 @@ class UserPost extends HTMLElement {
     </div>
     <div class="px-6 py-6">
       <div class="flex">
-        <div class="flex cursor-pointer like-click flex-col items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+        <div class="flex cursor-pointer flex-col items-center">
+        <div class="like-click flex items-center flex-col">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="${
+            this.liked ? "red" : "none"
+          }" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 svg-like">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -47,7 +96,11 @@ class UserPost extends HTMLElement {
             />
           </svg>
           <p class="mt-2">Like</p>
-        </div>
+          </div>
+          <a class="mt-4 underline" href="pages/view-likes/view-likes.php?id=${
+            this.id
+          }">View Likes</a>
+          </div>
         <div class="ml-8 view-click cursor-pointer flex flex-col items-center">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
           <path
@@ -56,7 +109,7 @@ class UserPost extends HTMLElement {
             d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
           />
           </svg>
-          <p class="mt-2">View</p>
+          <p class="mt-2">View Comments</p>
         </div>
       </div>
       <p class="py-6">${this.getAttribute("description")}</p>
