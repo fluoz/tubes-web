@@ -38,7 +38,7 @@ while ($a = mysqli_fetch_assoc($query)) {
     <div id="popup-comment" class="popup-comment">
       <div class="popup-container">
         <div class="popup-content">
-          <a href="../../index.html#<?= $id; ?>">
+          <a href="../../index.html?to=<?= $id; ?>">
             <svg
               class="close"
               xmlns="http://www.w3.org/2000/svg"

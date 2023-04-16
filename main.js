@@ -1,10 +1,10 @@
 const main = document.getElementById("main");
-let postData = [];
+// let postData = [];
 
 const getPosts = async () => {
   const res = await fetch("http://localhost/tubes-web/tubes-web/api/post.php");
   const data = await res.json();
-  postData = data.data;
+  let postData = data.data;
 
   if (postData.length == 0) {
     main.innerHTML = `<h3>Tidak ada post!</h3>`;
@@ -23,5 +23,17 @@ const getPosts = async () => {
             description="${x.caption}" 
             name="${x.username}">
         </user-post`;
+  }
+};
+
+const onLoadWeb = async () => {
+  await getPosts();
+  await new Promise((r) => setTimeout(r, 1000));
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const newUser = urlParams.get("to");
+
+  if (newUser) {
+    location.href = "#" + newUser;
   }
 };

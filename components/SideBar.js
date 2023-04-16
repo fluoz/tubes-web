@@ -13,7 +13,7 @@ class SideBar extends HTMLElement {
     this.querySelector(".btn-logout").addEventListener("click", () => {
       document.cookie =
         "login=;path=/tubes-web;expires=Thu, 01 Jan 1970 00:00:01 GMT";
-      location.href = this.path + "/sign-in/signIn.php";
+      location.href = this.path + "sign-in/signIn.php";
     });
   }
 

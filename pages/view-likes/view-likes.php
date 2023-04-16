@@ -27,7 +27,7 @@ while($res = mysqli_fetch_array($result)) {
     <div id="popup-like" class="popup-like">
       <div class="popup-container">
         <div class="popup-content">
-          <a href="../../index.html#<?= $post_id; ?>">
+          <a href="../../index.html?to=<?= $post_id; ?>">
             <svg
               class="close close-popup-like"
               xmlns="http://www.w3.org/2000/svg"

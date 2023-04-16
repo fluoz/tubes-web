@@ -24,9 +24,7 @@ class UserPost extends HTMLElement {
 
   render() {
     this.innerHTML = `
-    <section id="${
-      this.id
-    }" class="mt-20 border border-4 bg-white max-w-[600px] mx-auto border-black">
+    <section class="mt-20 border border-4 bg-white max-w-[600px] mx-auto border-black">
     <div class="flex border-b-4 border-black items-center px-6 py-2">
       <img width="50" src=${this.getAttribute("user-logo")} alt="" />
       <h2 class="text-xl ml-4">${this.getAttribute("name")}</h2>
