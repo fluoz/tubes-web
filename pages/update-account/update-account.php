@@ -42,6 +42,7 @@ if(isset($_POST["submit"])){
   } 
 
   setcookie("username", $username, time() + 3600, "/tubes-web");
+  setcookie('profile_picture', $fileName, time()+3600, "/tubes-web"); // nambah ini aja
 
   $update = "UPDATE users SET name = '$name', username = '$username', email = '$email', birthdate = '$birthdate', gender = '$gender', profile_picture = '$fileName' WHERE username = '{$_COOKIE['username']}'";
   $result = mysqli_query($conn, $update);

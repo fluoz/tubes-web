@@ -40,4 +40,13 @@ if ($method == "GET") {
     echo json_encode($res);
 
 }
+
+if ($method == "DELETE") {
+    $input = file_get_contents("php://input");
+    $request = json_decode($input, true);
+
+    $query = "DELETE FROM posts WHERE id = '{$request['post_id']}'";
+
+    mysqli_query($conn, $query);
+}
 ?>

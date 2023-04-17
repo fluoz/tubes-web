@@ -14,6 +14,10 @@ class UserPost extends HTMLElement {
     this.querySelector(".like-click").addEventListener("click", () => {
       this.onLikeHandler();
     });
+
+    this.querySelector(".trash").addEventListener("click", () => {
+      this.deletePost();
+    });
   }
 
   openPopupComment() {
@@ -65,12 +69,33 @@ class UserPost extends HTMLElement {
     }
   }
 
+  async deletePost() {
+    let xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.open("DELETE", "http://localhost/tubes-web/tubes-web/api/post.php");
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify({ post_id: this.id }));
+    this.remove();
+  }
+
   render() {
     this.innerHTML = `
     <section class="mt-20 border border-4 bg-white max-w-[600px] mx-auto border-black">
-    <div class="flex border-b-4 border-black items-center px-6 py-2">
-      <img width="50" src=${this.getAttribute("user-logo")} alt="" />
-      <h2 class="text-xl ml-4">${this.getAttribute("name")}</h2>
+    <div class="flex justify-between border-b-4 border-black items-center px-6 py-2">
+      <div class="flex items-center">
+        <img width="60" class="rounded-full max-h-[60px]" src=${this.getAttribute(
+          "user-logo"
+        )} alt="" />
+        <h2 class="text-xl ml-4">${this.getAttribute("name")}</h2>
+      </div>
+      ${
+        this.getCookie("username") == this.getAttribute("name")
+          ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" class="w-6 h-6 trash cursor-pointer">
+      <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clip-rule="evenodd" />
+    </svg>
+    `
+          : ""
+      }
     </div>
     <div class="w-full border-b-4 border-black ">
       <div class="aspect-w-3 aspect-h-4">

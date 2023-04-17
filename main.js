@@ -8,8 +8,9 @@ const getPosts = async () => {
     if (this.readyState == 4 && this.status == 200) {
       main.innerHTML = "";
       const data = JSON.parse(this.responseText);
-      if (data.length == 0) {
-        main.innerHTML = `<h3>Tidak ada post!</h3>`;
+
+      if (data.data.length == 0) {
+        main.innerHTML = `<h3 class="text-center mt-20">Tidak ada post!</h3>`;
         return;
       }
       for (let x of data.data) {
@@ -40,14 +41,15 @@ const getPosts = async () => {
 
 const onLoadWeb = async () => {
   await getPosts();
-  await new Promise((r) => setTimeout(r, 500));
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const newUser = urlParams.get("to");
+  setTimeout(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const newUser = urlParams.get("to");
 
-  if (newUser) {
-    location.href = "#" + newUser;
-  }
+    if (newUser) {
+      location.href = "#" + newUser;
+    }
+  }, 500);
 };
 
 const btnClicked = () => {

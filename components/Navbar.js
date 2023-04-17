@@ -31,7 +31,7 @@ class Navbar extends HTMLElement {
 
   render() {
     let right = `
-        <a class="px-8 rounded-md bg-white py-3 flex items-center justify-center text-black bold text-lg" href="${this.path}sign-in/signIn.php">Login</a>
+        <a class="px-8 rounded-md bg-white py-3 flex items-center justify-center text-black bold text-lg" href="${this.path}/pages/sign-in/signIn.php">Login</a>
       `;
 
     if (this.isLogin) {
@@ -42,7 +42,7 @@ class Navbar extends HTMLElement {
             <h1 class="text-white text-xl mr-4 font-bold">${this.getCookie(
               "username"
             )}</h1>
-            <img width="55" src=${
+            <img width="55" class="rounded-full max-h-[55px]" src=${
               this.getCookie("profile_picture")
                 ? this.path +
                   "assets/uploads/" +

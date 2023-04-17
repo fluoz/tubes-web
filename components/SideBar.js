@@ -56,7 +56,9 @@ class SideBar extends HTMLElement {
           />
         </svg>
       </div>
-      <img class="mx-auto mt-20 w-32" src="${this.profileLogo}" alt="" />
+      <img class="mx-auto mt-20 w-32 rounded-full max-h-32" src="${
+        this.profileLogo
+      }" alt="" />
       <h1 class="text-center font-bold text-4xl my-8">${this.getAttribute(
         "username"
       )}</h1>
