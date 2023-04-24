@@ -86,7 +86,7 @@ while ($a = mysqli_fetch_assoc($query)) {
             
             echo "
             <div class='flex items-start px-6 py-2'>
-              <img width='35px' src='$path' alt='' />
+              <img width='35px' class='max-h-[35px] rounded-full' src='$path' alt='' />
               <div class='flex flex-col'>
                 <div class='flex items-baseline'>
                   <h2 class='text-base font-bold ml-4'>{$comm['username']}</h2>

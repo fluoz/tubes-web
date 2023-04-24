@@ -45,7 +45,7 @@ while($res = mysqli_fetch_array($result)) {
           <?php
           foreach($data as $row) {
             echo "<div class='flex items-center px-6 py-2'>
-                    <img width='35px' src='../../assets/user-black.png' alt='' />
+                    <img width='35px' class='max-h-[35px] rounded-full' src='../../assets/user-black.png' alt='' />
                     <h2 class='text-base ml-4'>{$row['username']}</h2>
                   </div>";
           }

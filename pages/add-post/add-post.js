@@ -6,7 +6,7 @@ function previewImage(input) {
       preview.src = e.target.result;
       preview.width = 450;
       preview.height = 450;
-      // besok di run gass
+
       preview.classList.add("!max-h-[400px]", "border", "border-black");
 
       // Elemen label untuk "Add Image" box

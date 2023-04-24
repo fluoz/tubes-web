@@ -45,8 +45,22 @@ if ($method == "DELETE") {
     $input = file_get_contents("php://input");
     $request = json_decode($input, true);
 
-    $query = "DELETE FROM posts WHERE id = '{$request['post_id']}'";
+    $post_id = $request['post_id'];
 
+    $query = "DELETE FROM comments WHERE post_id = '{$post_id}'";
+    mysqli_query($conn, $query);
+
+    $query = "DELETE FROM likes WHERE post_id = '{$post_id}'";
+    mysqli_query($conn, $query);
+
+    $query = "SELECT image_url FROM posts WHERE id = '{$post_id}'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    $image_url = $row['image_url'];
+
+    unlink("../assets/uploads/" . $image_url);
+
+    $query = "DELETE FROM posts WHERE id = '{$post_id}'";
     mysqli_query($conn, $query);
 }
 ?>
