@@ -19,6 +19,20 @@ if (isset($_POST["submit"])) {
   date_default_timezone_set('Asia/Jakarta');
   $timestamp = date('Y-m-d H:i:s');
   $fileName = null;
+
+  $xml = simplexml_load_file('../../admins.xml');
+
+  foreach ($xml->admin as $data) {
+      if ($data->username == $username) {
+          echo '
+          <div style="z-index: 999;" class="popup open-popup" id="popup">
+            <h2>Error!</h2>
+            <p>Username sudah ada!</p>
+            <button onclick="btnClicked()" type="button">Ok</button>
+          </div>';
+          exit;
+      }
+  }
   
   if ($password != $confirmpass) {
     echo '
@@ -47,9 +61,11 @@ if (isset($_POST["submit"])) {
       $_SESSION['login'] = True;
       $_SESSION['username'] = $username;
       $_SESSION['profile_picture'] = $fileName;
+      $_SESSION['admin'] = false;
       setcookie('login', "true", time()+3600, "/tubes-web");
       setcookie('username', $username, time()+3600, "/tubes-web");
       setcookie('profile_picture', $fileName, time()+3600, "/tubes-web");
+      setcookie('admin', "false", time() + 3600, "/tubes-web");
       header("Location: ../../index.html");
       
     } catch (Exception $e) {

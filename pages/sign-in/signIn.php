@@ -14,6 +14,20 @@ if (isset($_COOKIE['login'])) {
 if (isset($_POST["submit"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
+    $xml = simplexml_load_file('../../admins.xml');
+
+    foreach ($xml->admin as $data) {
+        if ($data->username == $username && $data->password == $password) {
+            $_SESSION['login'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['admin'] = "true";
+            setcookie('login', "true", time() + 3600, "/tubes-web");
+            setcookie('username', $username, time() + 3600, "/tubes-web");
+            setcookie('admin', "true", time() + 3600, "/tubes-web");
+
+            header("Location: ../admin/admin.php");
+        }
+    }
 
     $md5Pass = md5($password);
 
@@ -41,9 +55,11 @@ if (isset($_POST["submit"])) {
     $_SESSION['login'] = True;
     $_SESSION['username'] = $username;
     $_SESSION['profile_picture'] = $data['profile_picture'];
+    $_SESSION['admin'] = "false";
     setcookie('login', "true", time() + 3600, "/tubes-web");
     setcookie('username', $username, time() + 3600, "/tubes-web");
     setcookie('profile_picture', $data['profile_picture'], time() + 3600, "/tubes-web");
+    setcookie('admin', "false", time() + 3600, "/tubes-web");
     header("Location: ../../index.html");
     }
 }

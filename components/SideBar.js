@@ -18,6 +18,9 @@ class SideBar extends HTMLElement {
       document.cookie =
         "profile_picture=;path=/tubes-web;expires=Thu, 01 Jan 1970 00:00:01 GMT";
       location.href = this.path + "sign-in/signIn.php";
+      document.cookie =
+        "admin=;path=/tubes-web;expires=Thu, 01 Jan 1970 00:00:01 GMT";
+      location.href = this.path + "sign-in/signIn.php";
     });
   }
 
@@ -56,36 +59,40 @@ class SideBar extends HTMLElement {
           />
         </svg>
       </div>
+      <a href="./pages/user-profile/user-profile.php?username=${this.getAttribute("username")}">
       <img class="mx-auto mt-20 w-32 rounded-full max-h-32" src="${
         this.profileLogo
       }" alt="" />
       <h1 class="text-center font-bold text-4xl my-8">${this.getAttribute(
         "username"
       )}</h1>
+      </a>
+      ${this.getCookie("admin") == "false" ? `
       <ul class="mx-auto w-full">
-        <li
-          class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
-        >
-          <a class="w-full block py-3 h-full" href="${
-            this.path
-          }update-account/update-account.php">Update Account</a>
-        </li>
-        <li
-          class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
-        >
-          <a class="w-full block py-3 h-full" href="${
-            this.path
-          }change-password/change-password.php">Change Password</a>
-        </li>
-        <li
-          class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
-        >
-          <a class="w-full block py-3 h-full" href="${
-            this.path
-          }add-post/add-post.php">Upload Content</a>
-        </li>
-      </ul>
-
+      <li
+        class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
+      >
+        <a class="w-full block py-3 h-full" href="${
+          this.path
+        }update-account/update-account.php">Update Account</a>
+      </li>
+      <li
+        class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
+      >
+        <a class="w-full block py-3 h-full" href="${
+          this.path
+        }change-password/change-password.php">Change Password</a>
+      </li>
+      <li
+        class="w-full cursor-pointer mt-6 bg-white font-bold text-2xl border border-black border-4 rounded-full text-center"
+      >
+        <a class="w-full block py-3 h-full" href="${
+          this.path
+        }add-post/add-post.php">Upload Content</a>
+      </li>
+    </ul>
+      ` : ""}
+     
       <button
         class="w-full btn-logout text-center py-3 mt-8 bg-black text-white font-bold text-2xl rounded-full"
       >

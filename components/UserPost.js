@@ -85,12 +85,14 @@ class UserPost extends HTMLElement {
     this.innerHTML = `
     <section class="mt-20 border border-4 bg-white max-w-[600px] mx-auto border-black">
     <div class="flex justify-between border-b-4 border-black items-center px-6 py-2">
+    <a href="./pages/user-profile/user-profile.php?username=${this.getAttribute("name")}">
       <div class="flex items-center">
-        <img width="60" class="rounded-full max-h-[60px]" src=${this.getAttribute(
-          "user-logo"
-        )} alt="" />
-        <h2 class="text-xl ml-4">${this.getAttribute("name")}</h2>
-      </div>
+          <img width="60" class="rounded-full max-h-[60px]" src=${this.getAttribute(
+            "user-logo"
+          )} alt="" />
+          <h2 class="text-xl ml-4">${this.getAttribute("name")}</h2>
+        </div>
+      </a>
       ${
         this.getCookie("username") == this.getAttribute("name")
           ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" class="w-6 h-6 trash cursor-pointer">

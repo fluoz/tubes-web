@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<admins>
+  <admin>
+    <username>nico</username>
+    <password>1122001</password>
+  </admin>
+  <admin>
+    <username>reza</username>
+    <password>1122015</password>
+  </admin>
+  <admin>
+    <username>marcel</username>
+    <password>1122017</password>
+  </admin>
+  <admin>
+    <username>hasan</username>
+    <password>1122031</password>
+  </admin>
+</admins>
