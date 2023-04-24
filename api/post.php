@@ -14,6 +14,15 @@ if ($method == "GET") {
         $profile = mysqli_fetch_assoc(mysqli_query($conn, $get_profile));
         $row['liked'] = false;
         $row["profile_picture"] = $profile["profile_picture"];
+        $row['countLikes'] = 0;
+
+        $getAllLikes = "SELECT * FROM likes WHERE post_id = '{$row['id']}'";
+        $likeQuery = mysqli_query($conn, $getAllLikes);
+
+        while ($likeData = mysqli_fetch_assoc($likeQuery)) {
+            $row['countLikes']++;
+        }
+
         $data[] = $row;
     };
 

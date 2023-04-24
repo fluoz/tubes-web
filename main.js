@@ -25,6 +25,7 @@ const getPosts = async () => {
                 img="./assets/uploads/${x.image_url}" 
                 description="${x.caption}" 
                 name="${x.username}"
+                count-likes="${x.countLikes}"
                 ${x.liked ? "liked" : ""}
             </user-post>`;
       }
