@@ -57,7 +57,7 @@ class Navbar extends HTMLElement {
     <nav
       class="w-full top-0 sticky bg-[#393536] border-b-4 border items-center border-black flex justify-between px-8"
     >
-    <a href="index.html">
+    <a href="${this.path + "index.html"}">
       <img width="130" src=${this.getAttribute("logo")} alt="" />
       </a>
     ${right}
