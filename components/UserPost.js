@@ -42,6 +42,16 @@ class UserPost extends HTMLElement {
       `;
       return;
     }
+    if (this.getCookie("admin") == "true") {
+      document.querySelector("#portal").innerHTML = `
+        <div style="z-index: 999;" class="popup open-popup" id="popup">
+        <h2>Error!</h2>
+        <p>Admin gak boleh like!</p>
+        <button onclick="btnClicked()" type="button">Ok</button>
+      </div>
+      `;
+      return;
+    }
 
     this.liked = !this.liked;
 

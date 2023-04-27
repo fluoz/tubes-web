@@ -60,6 +60,7 @@ if (isset($_POST["submit"])) {
     setcookie('username', $username, time() + 3600, "/tubes-web");
     setcookie('profile_picture', $data['profile_picture'], time() + 3600, "/tubes-web");
     setcookie('admin', "false", time() + 3600, "/tubes-web");
+    
     header("Location: ../../index.html");
     }
 }

@@ -54,7 +54,7 @@ while ($a = mysqli_fetch_assoc($query)) {
           </a>
           <p class="font-bold text-[1.5em] px-6 py-2">Comments (<?=  $data == null ? 0 :  count($data); ?>)</p>
           <?php
-          if (isset($_COOKIE["login"])) {
+          if (isset($_COOKIE["login"]) && $_COOKIE['admin'] != "true") {
             echo '<form action="" method="post">
             <textarea
               class="border border-black w-11/12 h-32 p-2 mx-6"
@@ -70,6 +70,11 @@ while ($a = mysqli_fetch_assoc($query)) {
             />
             <div id="char-count" style="float: right; margin-right: 30px">0/500</div>
           </form>';
+          } else if (isset($_COOKIE["login"]) && $_COOKIE['admin'] == "true") {
+            echo "<p class='ml-6'>Admin gak boleh ngelike!</p>";
+          }
+          else {
+            echo "<p class='ml-6'>Kalo mau nambah komen harus login dulu!</p>";
           }
           ?>
           

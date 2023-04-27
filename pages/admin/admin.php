@@ -1,3 +1,8 @@
+<?php 
+if ((isset($_COOKIE['admin']) && $_COOKIE['admin'] != 'true') || !isset($_COOKIE['login'])) {
+    header("Location: ../../index.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
